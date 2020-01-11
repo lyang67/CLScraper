@@ -1,0 +1,13 @@
+<h1>Henlo, Alex! You are a stinky birb</h1>
+
+<% if @craigslist.blank? %>
+  <p>There are NO SEEDS for you today fatty.  Go eat some broccoli</p>
+<% else %>
+  <p>You have <%=@craigslist.getSeeds %> seeds today from the Hooman Slave</p>
+
+<% end %>
+<%= form_with(url: "/search", method: "get") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
