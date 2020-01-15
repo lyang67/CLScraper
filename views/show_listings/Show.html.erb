@@ -1,0 +1,8 @@
+<h1>ShowListings#Show</h1>
+<p>Find me in app/views/show_listings/Show.html.erb</p>
+<%= image_tag('unlockphone.jpg')%>
+<li></li>
+<% for resultLine in  @allResults.getResults do%>
+  <a href="<%=resultLine.getPostingHtmlLink %>"><%=resultLine.getPostingTitle %></a>
+  <li></li>
+<%end %>

@@ -6,8 +6,10 @@
   <p>You have <%=@craigslist.getSeeds %> seeds today from the Hooman Slave</p>
 
 <% end %>
-<%= form_with(url: "/search", method: "get") do %>
+<%= image_tag(@craigslist.getImage)%>
+<%= form_with(url: "/search", method: "get", local: true)  do |form| %>
   <%= label_tag(:q, "Search for:") %>
   <%= text_field_tag(:q) %>
   <%= submit_tag("Search") %>
 <% end %>
+<p><%=@craigslist.getHttpResponse %></p>

@@ -27,4 +27,12 @@ class Craigslist < ApplicationRecord
   def getHttpResponse
     return @searchResponse
   end
+
+  def setPostListings
+    return @searchResponse
+  end
+
+  def getPostListings
+    return @searchResponse
+  end
 end

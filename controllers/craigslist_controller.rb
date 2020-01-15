@@ -12,7 +12,7 @@ class CraigslistController < ApplicationController
     @craigslist.setSeeds(seedsGiven)
     @craigslist.setImage("fullofrage.jpg")
 
-    uri = URI('https://seattle.craigslist.org/search/mca?query=450x')
+    #uri = URI('https://seattle.craigslist.org/search/mca?query=450x')
     #response = Net::HTTP.get(uri)
     #@craigslist.setHttpResponse(response)
 
@@ -20,6 +20,7 @@ class CraigslistController < ApplicationController
 
 
   def search
-    puts 'why are you talking to me????'
+    redirect_to action: "Show", controller: "show_listings"
+    return
   end
 end
