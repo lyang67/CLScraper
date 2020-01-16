@@ -4,5 +4,5 @@
 <li></li>
 <% for resultLine in  @allResults.getResults do%>
   <a href="<%=resultLine.getPostingHtmlLink %>"><%=resultLine.getPostingTitle %></a>
-  <li></li>
+  <%= image_tag(resultLine.getPostingImage, size:"200")%>
 <%end %>
