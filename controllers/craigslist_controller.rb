@@ -19,8 +19,9 @@ class CraigslistController < ApplicationController
 
 
   def search
-    parameter = params[:searchTerm]
-    redirect_to action: "Show", controller: "show_listings",  searchTerm: parameter
+    searchTerms = params[:searchTerm]
+    citiesToSearch = params[:cities]
+    redirect_to action: "Show", controller: "show_listings",  searchTerm: searchTerms, cities: citiesToSearch
     return
   end
 end
