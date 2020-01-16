@@ -8,8 +8,8 @@
 <% end %>
 <%= image_tag(@craigslist.getImage)%>
 <%= form_with(url: "/search", method: "get", local: true)  do |form| %>
-  <%= label_tag(:q, "Search for:") %>
-  <%= text_field_tag(:q) %>
+  <%= label_tag(:searchTerm, "Search for:") %>
+  <%= text_field_tag(:searchTerm) %>
   <%= submit_tag("Search") %>
 <% end %>
 <p><%=@craigslist.getHttpResponse %></p>
