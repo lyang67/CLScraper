@@ -45,13 +45,24 @@ class ShowListingsController < ApplicationController
         puts 'link is'
         puts postingLink
 
-        uri = URI(postingLink)
+        #uri = URI(postingLink)
         #response = Net::HTTP.get(uri)
         #findPic = Nokogiri::HTML(response)
         #picture = findPic.css(".gallery img")
         #pictureLink = picture.first["src"]
         #puts pictureLink
-        currentResult.setPostingImageLink("unlockphone.jpg")
+        postingImg = resultsrow.css(".result-image").first["data-ids"]
+        puts 'posting img link is' + postingImg
+        imgIds = postingImg.split("1:")
+        imgId = imgIds[1]
+
+        if (imgId[imgId.length - 1] == ',')
+          imgId = imgId[0...-1]
+        end
+        puts 'img link id is'
+        puts imgId
+        imgUrl = 'https://images.craigslist.org/' + imgId + '_300x300.jpg'
+        currentResult.setPostingImageLink(imgUrl)
 
         resultsFound.append(currentResult)
         resultsNum += 1
