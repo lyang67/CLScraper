@@ -2,8 +2,16 @@
 <p>Find me in app/views/show_listings/Show.html.erb</p>
 <%= image_tag('unlockphone.jpg')%>
 <br>
-<% for resultLine in  @allResults.getResults do%>
-  <a href="<%=resultLine.getPostingHtmlLink %>"><%=resultLine.getPostingTitle %></a>
-  <%= image_tag(resultLine.getPostingImage, size:"300")%>
-  <br>
-<%end %>
+<table style="width:100%">
+  <tr>
+    <th>Post</th>
+    <th>Image</th>
+  </tr>
+  <% for resultLine in  @allResults.getResults do%>
+
+    <tr>
+      <td><a href="<%=resultLine.getPostingHtmlLink %>"><%=resultLine.getPostingTitle %></a></td>
+      <td><%= image_tag(resultLine.getPostingImage, size:"300")%></td>
+    </tr>
+  <%end %>
+</table>

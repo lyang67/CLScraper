@@ -8,7 +8,17 @@ class ShowListingsController < ApplicationController
 
 
     searchTerm = params[:searchTerm]
-    puts searchTerm
+    #fj%20cruiser
+    searchTermArray = searchTerm.split(" ")
+    if searchTermArray.count > 1
+      searchTermReady = ''
+      for term in searchTermArray do
+        searchTermReady += term + '%20'
+      end
+    else
+      searchTermReady = searchTerm
+    end
+    puts searchTermReady
 
     cityString = params[:cities]
     cityArray = cityString.split(",")
@@ -16,10 +26,19 @@ class ShowListingsController < ApplicationController
     resultsFound = []
 
     for city in cityArray do
-      uri = URI('https://' + city.strip + '.craigslist.org/search/sss?sort=rel&query=' + searchTerm)
-      response = Net::HTTP.get(uri)
+      uri = URI('https://' + city.strip + '.craigslist.org/search/sss?sort=rel&query=' + searchTermReady)
+      puts uri
+      begin
+        response = Net::HTTP.get_response(uri)
+      rescue
+        next
+      end
+      if (response.blank? || response.code != '200')
+        puts 'got no response or invalid response'
+        next
+      end
       #doc = Nokogiri::HTML(open(Rails.root.join("app/assets/Files/clResult.html")))
-      doc = Nokogiri::HTML(response)
+      doc = Nokogiri::HTML(response.body)
       characters = doc.css(".result-row")
 
 
@@ -28,31 +47,32 @@ class ShowListingsController < ApplicationController
         currentResult = Listing.new
         puts resultsNum
 
-        #imgLink = (resultsrow.css(".result-image"))[0]
-        #puts imgLink.text
-
         titleText = resultsrow.css(".result-title").first.text
+        if (titleText.blank?)
+          currentResult.setPostingTitle('Cannot get posting title')
+        else
+          currentResult.setPostingTitle(titleText)
+        end
+
         if !(searchTerm.downcase.in? titleText.downcase)
           next
         end
-        currentResult.setPostingTitle(titleText)
-        puts 'title text is '
-        puts titleText
 
-
+        # set the post link
         postingLink = resultsrow.css("a").first["href"]
-        currentResult.setPostingHtmlLink(postingLink)
-        puts 'link is'
-        puts postingLink
+        if (postingLink.blank?)
+          currentResult.setPostingHtmlLink("http://seattle.craigslist.org")
+        else
+          currentResult.setPostingHtmlLink(postingLink)
+        end
 
-        #uri = URI(postingLink)
-        #response = Net::HTTP.get(uri)
-        #findPic = Nokogiri::HTML(response)
-        #picture = findPic.css(".gallery img")
-        #pictureLink = picture.first["src"]
-        #puts pictureLink
+        # get the image url from the data-ids attribute
         postingImg = resultsrow.css(".result-image").first["data-ids"]
-        puts 'posting img link is' + postingImg
+
+        if (postingImg.blank?)
+          next
+        end
+
         imgIds = postingImg.split("1:")
         imgId = imgIds[1]
 
