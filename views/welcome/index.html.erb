@@ -1,0 +1,10 @@
+<h1>Henlo, Alex! You are a stinky birb</h1>
+
+<% if @index.blank? %>
+  <p>There are NO SEEDS for you today fatty.  Go eat some broccoli</p>
+<% else %>
+  <%myseeds = 50 %>
+  <p>You have <%=@index.getSeeds %> seeds today from the Hooman Slave</p>
+
+<% end %>
+<%= image_tag(@index.getImage)%>

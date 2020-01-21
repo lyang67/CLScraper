@@ -1,0 +1,23 @@
+<h1>Henlo, Alex! You are a stinky birb</h1>
+
+<% if @craigslist.blank? %>
+  <p>There are NO SEEDS for you today fatty.  Go eat some broccoli</p>
+<% else %>
+  <p>You have <%=@craigslist.getSeeds %> seeds today from the Hooman Slave</p>
+
+<% end %>
+<%= image_tag(@craigslist.getImage, size:"50")%>
+<%= form_with(url: "/search", method: "get", local: true)  do |form| %>
+  <%= label_tag(:searchTerm, "Search for:") %>
+  <%= text_field_tag(:searchTerm) %>
+  <%= label_tag(:cities, "Cities to search in, separated by commas") %>
+  <%= text_field_tag(:cities) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+
+<%= javascript_include_tag "onLoad" %>
+<div id="demo">
+  <h2>Let AJAX change this text</h2>
+  <button type="button" onclick="loadDoc()">Change Content</button>
+</div>

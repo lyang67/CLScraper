@@ -1,0 +1,15 @@
+{
+  "state": {
+    "Washington": {
+      "Seattle": "seattle",
+      "Bellingham": "bellingham",
+      "Spokane": "spokane"
+    },
+    "Oregon": {
+      "Portland": "portland"
+    },
+    "Idaho": {
+      "Boise": "boise"
+    }
+  }
+}
