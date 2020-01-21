@@ -24,6 +24,7 @@ class ShowListingsController < ApplicationController
     cityArray = cityString.split(",")
 
     resultsFound = []
+    resultsNum = 0
 
     for city in cityArray do
       uri = URI('https://' + city.strip + '.craigslist.org/search/sss?sort=rel&query=' + searchTermReady)
@@ -42,7 +43,6 @@ class ShowListingsController < ApplicationController
       characters = doc.css(".result-row")
 
 
-      resultsNum = 1
       for resultsrow in characters do
         currentResult = Listing.new
         puts resultsNum
@@ -92,6 +92,7 @@ class ShowListingsController < ApplicationController
 
     @allResults = ResultListing.new
     @allResults.setResults(resultsFound)
+    @allResults.setNumResults(resultsNum)
 
   end
 end

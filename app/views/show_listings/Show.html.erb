@@ -1,17 +1,26 @@
-<h1>ShowListings#Show</h1>
-<p>Find me in app/views/show_listings/Show.html.erb</p>
-<%= image_tag('unlockphone.jpg')%>
-<br>
-<table style="width:100%">
-  <tr>
-    <th>Post</th>
-    <th>Image</th>
-  </tr>
-  <% for resultLine in  @allResults.getResults do%>
+<div id="header">
+  <%= link_to "Find My Stuff!.com", controller: "craigslist", action: "craigslist" %>
+</div>
 
+<div id="searchresultheader">
+  <p>Search Results:</p>
+  <%= image_tag('unlockphone.jpg')%>
+</div>
+<br>
+<%if @allResults.getNumResults == 0 %>
+  <p>No results found! </p>
+<%else %>
+  <table id=searchResultTable style="width:100%">
     <tr>
-      <td><a href="<%=resultLine.getPostingHtmlLink %>"><%=resultLine.getPostingTitle %></a></td>
-      <td><%= image_tag(resultLine.getPostingImage, size:"300")%></td>
+      <th>Post</th>
+      <th>Image</th>
     </tr>
-  <%end %>
-</table>
+    <% for resultLine in  @allResults.getResults do%>
+
+      <tr>
+        <td><a href="<%=resultLine.getPostingHtmlLink %>"><%=resultLine.getPostingTitle %></a></td>
+        <td><%= image_tag(resultLine.getPostingImage, size:"200")%></td>
+      </tr>
+    <%end %>
+  </table>
+<% end %>

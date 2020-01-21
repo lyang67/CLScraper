@@ -1,3 +1,25 @@
 // Place all the styles related to the craigslist controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+h1 {
+  color: navy;
+}
+
+#header {
+  background-color: yellow;
+}
+
+h2 {
+  color: yellow;
+}
+
+#greeter {
+  background-color: darkgreen;
+}
+
+#greeter > img {
+  float: none
+}
+
+
+

@@ -10,7 +10,7 @@ class CraigslistController < ApplicationController
     seedsGiven = 20
 
     @craigslist.setSeeds(seedsGiven)
-    @craigslist.setImage("fullofrage.jpg")
+    @craigslist.setImage("unlockphone.jpg")
 
 
     #@craigslist.setHttpResponse(response)

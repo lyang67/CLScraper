@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'craigslist#craigslist'
   get 'show_listings/Show'
   get 'craigslist/craigslist'
   get 'welcome/index'

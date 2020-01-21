@@ -1,3 +1,38 @@
 // Place all the styles related to the show_listings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+h1 {
+  color: navy;
+}
+
+#header {
+  background-color: yellow;
+  height:100%;
+}
+
+#header > a{
+  height: 90%;
+  color: darkgreen;
+}
+
+#searchResultTable {
+  width:100%
+}
+table, th, td {
+  border: 1px solid black;
+}
+
+th {
+  height: 50px;
+  background-color: blue;
+  color: yellow;
+  text-align: left;
+}
+
+td {
+  text-align: left;
+}
+
+td > img {
+  float:left
+}
