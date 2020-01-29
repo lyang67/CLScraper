@@ -1,26 +1,36 @@
-<div id="header">
-  <%= link_to "Find My Stuff!.com", controller: "craigslist", action: "craigslist" %>
+<%= render "layouts/basepagepartial" %>
+
+
+<div class="w3-main" style="margin-left:250px" >
+  <div class="w3-row w3-padding-64">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal" id="searchResultTable">Search Results:</h1>
+      <%if @allResults.getNumResults == 0 %>
+        <p>No results found! </p>
+      <%else %>
+        <table id=searchResultTable style="width:100%">
+          <tr>
+            <th>Post</th>
+            <th>Image</th>
+          </tr>
+          <% for resultLine in  @allResults.getResults do%>
+
+            <tr>
+              <td><a href="<%=resultLine.getPostingHtmlLink %>"><%=resultLine.getPostingTitle %></a></td>
+              <td><%= image_tag(resultLine.getPostingImage, size:"200")%></td>
+            </tr>
+          <%end %>
+        </table>
+      <% end %>
+
+    </div>
+    <div class="w3-third w3-container">
+      <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
+      <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
+    </div>
+  </div>
 </div>
 
-<div id="searchresultheader">
-  <p>Search Results:</p>
-  <%= image_tag('unlockphone.jpg')%>
-</div>
-<br>
-<%if @allResults.getNumResults == 0 %>
-  <p>No results found! </p>
-<%else %>
-  <table id=searchResultTable style="width:100%">
-    <tr>
-      <th>Post</th>
-      <th>Image</th>
-    </tr>
-    <% for resultLine in  @allResults.getResults do%>
 
-      <tr>
-        <td><a href="<%=resultLine.getPostingHtmlLink %>"><%=resultLine.getPostingTitle %></a></td>
-        <td><%= image_tag(resultLine.getPostingImage, size:"200")%></td>
-      </tr>
-    <%end %>
-  </table>
-<% end %>
+</body>
+</html>
