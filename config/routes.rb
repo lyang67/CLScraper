@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'about/about'
   root 'craigslist#craigslist'
   get 'show_listings/Show'
   get 'craigslist/craigslist'
